@@ -92,10 +92,21 @@ function displayEntries() {
     const div = document.createElement("div");
     div.className = "entry";
     div.innerHTML = `
-      <strong>${entry.mood}</strong> - ${formatDate(entry.createdAt)}
+      <div class="entry-header">
+        <div>
+          <strong>${entry.mood}</strong> - ${formatDate(entry.createdAt)}
+        </div>
+        <button class="delete-entry-btn" data-entry-id="${entry._id}">Delete</button>
+      </div>
       <p>${escapeHtml(entry.text)}</p>
     `;
     list.appendChild(div);
+  });
+
+  list.querySelectorAll(".delete-entry-btn").forEach((button) => {
+    button.addEventListener("click", () => {
+      deleteEntry(button.dataset.entryId);
+    });
   });
 }
 
@@ -228,6 +239,33 @@ async function loadReport(month) {
     renderReport(data);
   } catch (error) {
     reportContent.innerHTML = `<p class="error-text">${escapeHtml(error.message)}</p>`;
+  }
+}
+
+async function deleteEntry(entryId) {
+  const confirmed = window.confirm("Delete this journal entry?");
+  if (!confirmed) {
+    return;
+  }
+
+  try {
+    const response = await fetch(`${API_BASE_URL}/journals/${entryId}`, {
+      method: "DELETE"
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Unable to delete this entry.");
+    }
+
+    const activeMonth = graphMonthInput.value || defaultMonth;
+    await loadEntries(activeMonth);
+
+    if (reportSection.style.display === "block") {
+      reportContent.innerHTML = "<p>Entry deleted. Generate the monthly report again to refresh it.</p>";
+    }
+  } catch (error) {
+    alert(error.message);
   }
 }
 

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Journal = require("../models/journal");
+const MonthlyReport = require("../models/monthlyReport");
 
 function getMonthRange(month) {
   if (!/^\d{4}-\d{2}$/.test(month)) {
@@ -68,5 +69,26 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.delete("/:id", async (req, res) => {
+  try {
+    const deletedJournal = await Journal.findByIdAndDelete(req.params.id);
+
+    if (!deletedJournal) {
+      return res.status(404).json({ error: "Journal entry not found." });
+    }
+
+    await MonthlyReport.deleteOne({ month: getMonthKey(deletedJournal.createdAt) });
+
+    res.json({ message: "Journal entry deleted successfully." });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+function getMonthKey(dateValue) {
+  const date = new Date(dateValue);
+  return `${date.getUTCFullYear()}-${String(date.getUTCMonth() + 1).padStart(2, "0")}`;
+}
 
 module.exports = router;

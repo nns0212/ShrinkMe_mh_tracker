@@ -109,6 +109,23 @@ button:hover {
   border-radius: 10px;
 }
 
+.entry-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.delete-entry-btn {
+  background: #f8d7da;
+  color: #7b241c;
+  margin-top: 0;
+}
+
+.delete-entry-btn:hover {
+  background: #f1b9c0;
+}
+
 /* Top Black Header */
 .top-header {
   background: black;
