@@ -11,7 +11,9 @@ const entriesSection = document.getElementById("entriesSection");
 const graphSection = document.getElementById("graphSection");
 const reportSection = document.getElementById("reportSection");
 
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL = window.location.hostname === "127.0.0.1" || window.location.hostname === "localhost"
+  ? "http://localhost:5000/api"
+  : "https://shrinkme-backend.onrender.com/api";
 const today = new Date();
 const defaultMonth = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
 
