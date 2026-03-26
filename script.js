@@ -301,25 +301,25 @@ function renderReport(report) {
     .join("");
 
   reportContent.innerHTML = `
-    <div class="report-pill risk-${escapeHtml(report.riskLevel || "stable")}">
+    <div class="report-pill report-comic risk-${escapeHtml(report.riskLevel || "stable")}">
       ${escapeHtml((report.riskLevel || "stable").toUpperCase())}
     </div>
-    <h3>${escapeHtml(report.month)}</h3>
-    <p>${escapeHtml(report.summary)}</p>
-    <h4>Mood Breakdown</h4>
-    <ul>${moodItems || "<li>No mood data yet.</li>"}</ul>
-    <h4>Patterns</h4>
-    <ul>${patternItems || "<li>No patterns available yet.</li>"}</ul>
-    <h4>Suggestions</h4>
-    <ul>${actionItems || "<li>No suggestions available yet.</li>"}</ul>
-    <div class="therapist-note ${report.therapistSuggestion ? "show" : ""}">
+    <h3 class="report-comic">${escapeHtml(report.month)}</h3>
+    <p class="report-comic">${escapeHtml(report.summary)}</p>
+    <h4 class="report-original">Mood Breakdown</h4>
+    <ul class="report-original">${moodItems || "<li>No mood data yet.</li>"}</ul>
+    <h4 class="report-original">Patterns</h4>
+    <ul class="report-original">${patternItems || "<li>No patterns available yet.</li>"}</ul>
+    <h4 class="report-original">Suggestions</h4>
+    <ul class="report-original">${actionItems || "<li>No suggestions available yet.</li>"}</ul>
+    <div class="therapist-note report-comic ${report.therapistSuggestion ? "show" : ""}">
       ${
         report.therapistSuggestion
           ? "It could help to talk with a therapist or counselor if these patterns continue."
           : "No therapist recommendation was triggered for this month."
       }
     </div>
-    <p class="disclaimer">${escapeHtml(report.disclaimer || "")}</p>
+    <p class="disclaimer report-comic">${escapeHtml(report.disclaimer || "")}</p>
   `;
 }
 

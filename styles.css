@@ -270,6 +270,14 @@ input[type="month"] {
   padding-left: 20px;
 }
 
+.report-comic {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
+.report-original {
+  font-family: "Dancing Script", cursive;
+}
+
 .report-pill {
   display: inline-block;
   padding: 6px 12px;
