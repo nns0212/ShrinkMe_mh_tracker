@@ -276,11 +276,12 @@ input[type="month"] {
 
 .report-original {
   font-family: "Dancing Script", cursive;
+  font-weight: 700;
 }
 
 .report-original li {
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .report-pill {
