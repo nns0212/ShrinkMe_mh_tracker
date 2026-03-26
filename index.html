@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Daily Journal</title>
+
+    <link rel="stylesheet" href="styles.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playwrite+AU+QLD:wght@100..400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+
+  <body>
+  <!-- Top Black Header -->
+  <div class="top-header">
+    ShrinkMe
+  </div>
+
+  <div class="dashboard-container">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <button id="entriesBtn">Entries</button>
+      <button id="graphBtn">Graph</button>
+      <button id="reportBtn">Report</button>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+
+      <!-- Entries Section -->
+      <div id="entriesSection">
+        <h1>Ink Your Thoughts, Free Your Mind...!</h1>
+
+        <div class="journal-container">
+          <h2>How are you feeling today?</h2>
+
+          <select id="mood">
+            <option value="" disabled selected>Select your mood</option>
+            <option>Happy</option>
+            <option>Sad</option>
+            <option>Excited</option>
+            <option>Angry</option>
+            <option>Calm</option>
+          </select>
+
+          <textarea id="entry" placeholder="Your journal entry"></textarea>
+
+          <button id="saveBtn">Save Entry</button>
+        </div>
+
+        <div id="journalList"></div>
+      </div>
+
+      <!-- Graph Section -->
+      <div id="graphSection" style="display:none;">
+        <h2>Mood Analytics</h2>
+        <div class="month-picker-row">
+          <label for="graphMonth">Month</label>
+          <input type="month" id="graphMonth" />
+        </div>
+        <canvas id="moodChart"></canvas>
+      </div>
+
+      <!-- Report Section -->
+      <div id="reportSection" style="display:none;">
+        <h2>Mental Health Report</h2>
+        <div class="report-controls">
+          <label for="reportMonth">Month</label>
+          <input type="month" id="reportMonth" />
+          <button id="generateReportBtn">Generate Report</button>
+        </div>
+        <div id="reportContent" class="report-card">
+          <p>Select a month to generate your report.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
