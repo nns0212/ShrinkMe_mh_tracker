@@ -57,7 +57,7 @@ textarea {
   border-radius: 10px;
   border: none;
   font-size: 16px;
-  font-family: "Playwrite AU QLD", sans-serif;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
   box-shadow: 0 2px 6px rgba(105, 2, 2, 0.2);
   margin-bottom: 20px;
   color: rgb(0, 0, 0); /* Ensures input text appears gray */
@@ -114,6 +114,49 @@ button:hover {
   justify-content: space-between;
   align-items: center;
   gap: 12px;
+}
+
+.entry-actions {
+  display: flex;
+  align-items: center;
+}
+
+.entry-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex: 1;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 22px;
+  color: #1b1b1b;
+}
+
+.entry-toggle:hover {
+  background: transparent;
+}
+
+.entry-summary {
+  text-align: left;
+}
+
+.entry-caret {
+  font-size: 20px;
+  line-height: 1;
+}
+
+.entry-toggle[aria-expanded="true"] .entry-caret {
+  transform: rotate(180deg);
+}
+
+.entry-text {
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
 .delete-entry-btn {

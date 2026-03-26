@@ -91,16 +91,30 @@ function displayEntries() {
   journalEntries.forEach((entry) => {
     const div = document.createElement("div");
     div.className = "entry";
+    const entryId = `entry-text-${entry._id}`;
     div.innerHTML = `
       <div class="entry-header">
-        <div>
-          <strong>${entry.mood}</strong> - ${formatDate(entry.createdAt)}
+        <button class="entry-toggle" data-entry-target="${entryId}" aria-expanded="false" type="button">
+          <span class="entry-summary">${escapeHtml(entry.mood)} - ${formatDate(entry.createdAt)}</span>
+          <span class="entry-caret">▾</span>
+        </button>
+        <div class="entry-actions">
+          <button class="delete-entry-btn" data-entry-id="${entry._id}">Delete</button>
         </div>
-        <button class="delete-entry-btn" data-entry-id="${entry._id}">Delete</button>
       </div>
-      <p>${escapeHtml(entry.text)}</p>
+      <p id="${entryId}" class="entry-text" hidden>${escapeHtml(entry.text)}</p>
     `;
     list.appendChild(div);
+  });
+
+  list.querySelectorAll(".entry-toggle").forEach((button) => {
+    button.addEventListener("click", () => {
+      const target = document.getElementById(button.dataset.entryTarget);
+      const isExpanded = button.getAttribute("aria-expanded") === "true";
+
+      button.setAttribute("aria-expanded", String(!isExpanded));
+      target.hidden = isExpanded;
+    });
   });
 
   list.querySelectorAll(".delete-entry-btn").forEach((button) => {
