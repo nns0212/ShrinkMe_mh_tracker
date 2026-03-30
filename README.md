@@ -4,7 +4,6 @@ ShrinkMe is an AI-assisted mental wellness journaling web application that helps
 
 ## Live Links
 
-- Live Website: [https://shrinkmeee.netlify.app/](https://shrinkmeee.netlify.app/)
 - Backend API: [https://shrinkme-backend.onrender.com](https://shrinkme-backend.onrender.com)
 
 ## Features
